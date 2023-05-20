@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOPWATCH</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        .digit{
+            font-size: 100px;
+        }
+        .txt{
+            font-size: 30px;
+        }
+        button{
+            width: 100px;
+            height: 40px;
+            border-radius: 10px;
+        }
+        #start{
+            background-color: green;
+            color: white;
+        }
+        #stop{
+            background-color:red;
+            color: white;
+        }
+        #reset{
+            background-color: yellow;
+            color:black;
+
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; font-size: 30px; background-color: gray; color: white;">
+        <h1>STOPWATCH</h1>
+    </div>
+    <div style="text-align: center; margin-top: 40px; padding:20px;">
+        <span class="digit" id="hr">00</span>
+        <span class="txt" id="hr">Hr</span>
+        <span class="digit" id="min">00</span>
+        <span class="txt" id="hr">Min</span>
+        <span class="digit" id="sec">00</span>
+        <span class="txt" id="hr">Sec</span>
+        <span class="digit" id="count">00</span>
+        
+    </div>
+    <div style="display: flex; justify-content: center;align-items: center; gap: 40px; margin-top: 20px;">
+        <button id="start" id="start" onclick="start()">Start</button>
+        <button id="stop" id="stop" onclick="stop()">Stop</button>
+        <button id="reset" id="reset" onclick="reset()">Reset</button>
+    </div>
+    <script>
+        var hr = 0;
+        var min= 0;
+        var sec = 0;
+        var count=0;
+
+        var timer=false;
+
+        function start(){
+            timer = true;
+            stopWatch();
+        }
+        function stop(){
+            timer = false;
+        }
+        function reset(){
+            timer=false;
+            hr=0;
+            min=0;
+            sec =0;
+            count=0;
+
+            document.getElementById("hr").innerHTML="00";
+            document.getElementById("min").innerHTML="00";
+            document.getElementById("sec").innerHTML="00";
+            document.getElementById("count").innerHTML="00";
+        }
+        function stopWatch(){
+
+                 if(timer==true){
+                    count = count +1;
+                 
+                 if(count==100){
+                    sec= sec +1;
+                    count =0;
+                 }
+                 if(sec==60){
+                    min = min +1;
+                    sec =0;
+                 }
+                 if(min==60){
+                    hr = hr +1;
+                    min=0;
+                    sec=0;
+                 }
+                 var hrString = hr;
+                 var minString = min;
+                 var secString = sec;
+                 var countString = count;
+
+                 if(hr<10){
+                    hrString = "0" + hrString;
+                 }
+                 if(min<10){
+                    minString = "0" + minString;
+                 }
+                 if(sec<10){
+                    secString = "0" + secString;
+                 }
+                 if(count<10){
+                    countString = "0" + countString;
+                 }
+
+          document.getElementById("hr").innerHTML = hrString;
+          document.getElementById("min").innerHTML = minString;
+          document.getElementById("sec").innerHTML = secString;
+          document.getElementById("count").innerHTML = countString;
+
+             setTimeout("stopWatch()", 10);
+                }
+    };
+    </script>
+</body>
+</html>
